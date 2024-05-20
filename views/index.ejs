@@ -1,0 +1,46 @@
+<!-- header section -->
+<%- include("partials/header.ejs")%>
+
+  <!-- title section -->
+  <h1 class="text-center display-5 fw-bold text-body-emphasis">Post a Blog</h1>
+
+  <!-- form section -->
+  <div class="text-center justify-content-center px-4 py-5 row g-4 py-5 row-cols-4 row-cols-lg-2 {
+    height: 200px;
+  }">
+    <form method="POST" action="/submit" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+      <div class="mb-3">
+          <input type="text" class="form-control" name="title" placeholder="type title" required>
+      </div>
+      <div class="mb-3">
+          <textarea rows= "10" class="form-control" name="blogContent" placeholder="type content here" required="" rows="4"></textarea>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+      <hr class="my-4">
+  </form>
+  </div>
+
+  <!-- aritlce section -->
+  <div class="text-center justify-content-center px-4 row g-4 row-cols-4 row-cols-lg-2">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h2 class="text-center display-5 fw-bold">Blogs</h2>
+    <% blogTitles.forEach(function(title, index) { %>
+    <div class="d-flex text-body-secondary pt-3">
+      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+        <div class="d-flex justify-content-between">
+          <strong class="text-gray-dark"><%= title %></strong>
+          <a href="/post/<%= index %>">View Blog</a>
+        </div>
+        <div class="text-start">
+          <p><%= new Date().toLocaleDateString() %></p> 
+        </div>
+      </div>
+    </div>
+    <% }); %>
+    </div>
+  </div>
+
+
+
+<!-- footer -->
+<%- include("partials/footer.ejs") %>

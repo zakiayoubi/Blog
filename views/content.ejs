@@ -1,0 +1,33 @@
+<%- include("partials/header.ejs") %>
+<div class="container my-5 custom-height">
+    <div class="p-5 text-start bg-body-tertiary rounded-3">
+      <h1 class="text-center text-body-emphasis"><%= title %></h1>
+      <p class="col-lg-8 mx-auto fs-5 text-muted">
+        <%= content %>
+      </p>
+    </div>
+
+    <!-- Inside your loop that displays each post -->
+    <form id="deleteForm" action="/delete-post" method="POST">
+        <input type="hidden" name="postId" value="<%= postId %>">
+            <button onclick="confirmDeletion()" type="submit" class="w-100 btn btn-lg btn-primary">Delete</button>
+    </form>
+    <script>
+        function confirmDeletion() {
+            const isConfirmed = confirm("Are you sure you want to delete this post?");
+            if (isConfirmed) {
+                // Submit the form programmatically if the user confirms
+                document.getElementById('deleteForm').submit();
+            }
+        }
+    </script>
+
+    <form action="/edit-post" method="POST">
+        <input type="hidden" name="postId" value="<%= postId %>">
+            <button type="submit" class="w-100 btn btn-lg btn-secondary">Edit</button>
+    </form>
+
+
+  </div>
+
+<%- include("partials/footer.ejs") %>
